@@ -1,0 +1,22 @@
+#contain{
+    flex-direction: column;
+}
+
+#course-container{
+    height: max-content;
+}
+
+#contain .box img{
+    width: 290px;
+}
+
+@media only screen and (max-width: 450px) {
+    #container-5 {
+      width: auto;
+    }
+    .rower{
+        width: auto;
+    }
+    
+  }
+ 

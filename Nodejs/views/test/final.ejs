@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    </head>
+    <body>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat &display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                background-color: #333
+            }
+
+            .container {
+                background-color: #555;
+                color: #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: 'Montserrat', sans-serif;
+                max-width: 700px
+            }
+
+            .container > p {
+                font-size: 32px
+            }
+
+            .question {
+                width: 75%
+            }
+
+            .options {
+                position: relative;
+                padding-left: 40px
+            }
+
+            #options label {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 14px;
+                cursor: pointer
+            }
+
+            .options input {
+                opacity: 0
+            }
+
+            .checkmark {
+                position: absolute;
+                top: -1px;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #555;
+                border: 1px solid #ddd;
+                border-radius: 50%
+            }
+
+            .options input:checked~.checkmark:after {
+                display: block
+            }
+
+            .options .checkmark:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark {
+                background: #21bf73;
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark:after {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            .btn-primary {
+                background-color: #555;
+                color: #ddd;
+                border: 1px solid #ddd
+            }
+
+            .btn-primary:hover {
+                background-color: #21bf73;
+                border: 1px solid #21bf73
+            }
+
+            .btn-success {
+                padding: 5px 25px;
+                background-color: #21bf73
+            }
+
+
+            @media (min-width: 577px) {
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+                .imp{
+                    margin: 0px 0px 20px 0px;
+                }
+            }
+
+            @media(min-width: 768px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+            }
+
+            @media(min-width: 840px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 0px 0px;
+                }
+            }
+
+
+            
+
+            @media(max-width:576px) {
+                .question {
+                    width: 100%;
+                    word-spacing: 2px
+                }
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 20%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 20%;
+                }
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+                
+
+            }
+
+            @media(max-width:450px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 16%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 16%;
+                }
+            }
+
+            @media(max-width:414px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 14%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 14%;
+                }
+            }
+
+
+            @media(max-width:360px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 8%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 8%;
+                }
+            }
+
+            @media(max-width:320px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 3%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 3%;
+                }
+            }
+          
+
+           
+        </style>
+
+
+        <div style="border: 2px solid red;">
+
+            <div style="text-align: center; color: white;">
+                <h1>MODULE - 3 (EVALUATION TEST)</h1>
+                <h2>MULTIPLE CHOICE QUESTIONS TEST</h2>
+            </div>
+
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <div style=" margin-left: 20%; margin-top: 3%; color: white;">
+
+                <h3>Rules And Regulations</h3>
+                <ul style="margin-left: 5%;">
+                    <li>Make sure that you write your name and Email ID correctly.<br>
+                        Otherwise, the system can't record your grades.</li>
+                    <li>The given time for this quiz is 30 minutes. After that, the form will be closed for you.</li>
+                    <li>Students who will not submit their answers in time will receive 0.</li>
+                    <li>You can only submit your answers once.</li>
+                    <li>Each question has its own grading points. After you submit your answers,<br>
+                         we will evaluate your answers and let you know your grades later.</li>
+                    <li>If you have any technical problem during the quiz, please take a screenshot<br>
+                        or screen recording and send us.</li>
+                </ul>
+            </div>
+
+            
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <form
+                action="/test/final" id="form1" method="POST">
+                <input type="hidden"  name="coursename" value="Web Development">
+                <input type="hidden"  name="coursenumber" value="200">
+                <input type="hidden"  name="level" value="final">
+
+
+                <div class="info" style="color: white;">
+                    <label style="margin: auto;"><h5 >Student Name </h5> </label>
+                    <div >
+                        <input class="imp"  style=" width: 300px;" type="text" name="username" placeholder="First name">
+                        <input class="inp" style=" width: 300px;" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    
+                </div>
+
+                <div class="infoemail"style="color: white;">
+                    <label style="margin: auto;"><h5>Email ID</h5></label>
+                    <div >
+                        <input style="width: 300px; margin-bottom: 3%;" type="email" name="email" placeholder="Email ID">
+                    </div>
+                </div>
+
+                <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+               
+
+                <!--Question-1-->
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following would you use an IFrame for?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Embedding a map from Google Maps in your website
+                                <input type="radio" name="q1_response" value="Embedding a map from Google Maps in your website">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Adding an image to your website
+                                <input type="radio" name="q1_response" value="Adding an image to your website">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Changing an image’s opacity when the user hovers over the image
+                                <input type="radio" name="q1_response" value="Changing an image’s opacity when the user hovers over the image">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Adding a filter to an image on your website
+                                <input type="radio" name="q1_response" value="Adding a filter to an image on your website">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Question-2-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Why is it important to avoid repetitive code while creating a website?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Excessive code is harder to read and understand
+                                <input type="radio" name="q2_response" value="Excessive code is harder to read and understand">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It is easier to make edits to websites when CSS rules are strategically grouped and organized
+                                <input type="radio" name="q2_response" value="It is easier to make edits to websites when CSS rules are strategically grouped and organized">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It demonstrates good coding style
+                                <input type="radio" name="q2_response" value="It demonstrates good coding style">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q2_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---Question-3-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  Which of the following settings will not make an element invisible?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">visibility: hidden
+                                <input type="radio" name="q3_response" value="visibility: hidden">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">appearance: off
+                                <input type="radio" name="q3_response" value="appearance: off">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">opacity: 0
+                                <input type="radio" name="q3_response" value="opacity: 0">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">display: none
+                                <input type="radio" name="q3_response" value="display: none">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-4-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  Which of the following defines border thickness so that the top and bottom borders are 10px thick and left and right borders are 5px thick?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">border: 5px 10px 5px 10px
+                                <input type="radio" name="q4_response" value="border: 5px 10px 5px 10px">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">border: 5px 5px 10px 10px
+                                <input type="radio" name="q4_response" value="border: 5px 5px 10px 10px">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">border: 10px 10px 5px 5px
+                                <input type="radio" name="q4_response" value="border: 10px 10px 5px 5px">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">border: 10px 5px 10px 5px
+                                <input type="radio" name="q4_response" value="border: 10px 5px 10px 5px">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-5-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is true about RESTful web services?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Webservices based on REST Architecture are known as RESTful web services
+                                <input type="radio" name="q5_response" value="Webservices based on REST Architecture are known as RESTful web services">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Webservices uses HTTP methods to implement the concept of REST architecture
+                                <input type="radio" name="q5_response" value="Webservices uses HTTP methods to implement the concept of REST architecture">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Both of the above
+                                <input type="radio" name="q5_response" value="Both of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q5_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-6-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. In Nodejs how node based web servers differ from traditional web servers?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Node based server uses a single threaded model and can serve much larger number of requests compared to any traditional server like Apache HTTP Server.
+                                <input type="radio" name="q6_response" value="Node based server uses a single threaded model and can serve much larger number of requests compared to any traditional server like Apache HTTP Server.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Node based server process request much faster than traditional server.
+                                <input type="radio" name="q6_response" value="Node based server process request much faster than traditional server.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">There is no much difference between the two.
+                                <input type="radio" name="q6_response" value="There is no much difference between the two.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q6_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-7-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Why a Node.JS code is pretty fast although being written in JavaScript?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Node.JS internally converts JavaScript code to Java based code and then execute the same
+                                <input type="radio" name="q7_response" value="Node.JS internally converts JavaScript code to Java based code and then execute the same">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Node.JS internally converts JavaScript code to C based code and then execute the same
+                                <input type="radio" name="q7_response" value="Node.JS internally converts JavaScript code to C based code and then execute the same">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Being built on Google Chrome's V8 JavaScript Engine
+                                <input type="radio" name="q7_response" value="Being built on Google Chrome's V8 JavaScript Engine">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of These
+                                <input type="radio" name="q7_response" value="None of These">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-8-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which module is used to serve static resources in Node.js?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">node-static
+                                <input type="radio" name="q8_response" value="node-static">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">http
+                                <input type="radio" name="q8_response" value="http">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">node-resource
+                                <input type="radio" name="q8_response" value="node-resource">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">static
+                                <input type="radio" name="q8_response" value="static">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-9-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Is console a global object?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">null
+                                <input type="radio" name="q9_response" value="null">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">false
+                                <input type="radio" name="q9_response" value="false">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">true
+                                <input type="radio" name="q9_response" value="true">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None
+                                <input type="radio" name="q9_response" value="None">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-10-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  In Nodejs what is use of underscore variable in REPL session?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">to store the result
+                                <input type="radio" name="q10_response" value="to store the result">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">to get the last command used
+                                <input type="radio" name="q10_response" value="to get the last command used">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q10_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">to get the last result
+                                <input type="radio" name="q10_response" value="to get the last result">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+                <!--Question-11-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. In Node.js APIs of Node.JS are which of the following?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Asynchronous
+                                <input type="radio" name="q11_response" value="Asynchronous">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options"> Synchronous
+                                <input type="radio" name="q11_response" value=" Synchronous">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Both of the above
+                                <input type="radio" name="q11_response" value="Both of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q11_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-12-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following class is used to create and consume custom events in Node.js?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">EventEmitter
+                                <input type="radio" name="q12_response" value="EventEmitter">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Events
+                                <input type="radio" name="q12_response" value="Events">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">NodeEvent
+                                <input type="radio" name="q12_response" value="NodeEvent">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q12_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-13-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following template engines can be used with Node.js?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Jade
+                                <input type="radio" name="q13_response" value="Jade">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Vash
+                                <input type="radio" name="q13_response" value="Vash">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Handlebars
+                                <input type="radio" name="q13_response" value="Handlebars">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q13_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-14-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. MongoDB supports fixed-size collections called ____________ collections.</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">primary
+                                <input type="radio" name="q14_response" value="primary">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">secondary
+                                <input type="radio" name="q14_response" value="secondary">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">capped
+                                <input type="radio" name="q14_response" value="capped">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the mentioned
+                                <input type="radio" name="q14_response" value="All of the mentioned">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-15-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following sorting is not supported by MongoDB?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">collation
+                                <input type="radio" name="q15_response" value="collation">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">collection
+                                <input type="radio" name="q15_response" value="collection">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">heap
+                                <input type="radio" name="q15_response" value="heap">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the mentioned
+                                <input type="radio" name="q15_response" value="None of the mentioned">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div style="text-align: center; margin: 40px 0px;">
+                    <button class="btn btn-primary" type="submit" form="form1" value="Submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html></body></html>

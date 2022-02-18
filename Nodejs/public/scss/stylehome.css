@@ -1,0 +1,355 @@
+/* css reset*/
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+/*Navigation Bar*/
+body {
+	font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.form-control {
+	box-shadow: none;		
+	font-weight: normal;
+	font-size: 13px;
+}
+.navbar {
+	background: #fff;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-bottom: 1px solid #dfe3e8;
+	border-radius: 0;
+}
+.nav-link img {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	margin: -8px 0;
+	float: left;
+	margin-right: 10px;
+}
+.navbar .navbar-brand {
+	padding-left: 0;
+	font-size: 20px;
+	padding-right: 50px;
+}
+.navbar .navbar-brand b {
+	color: #33cabb;		
+}
+.navbar .form-inline {
+	display: inline-block;
+}
+.navbar a {
+	color: #888;
+	font-size: 15px;
+}
+
+.navbar .sign-up-btn {
+	min-width: 110px;
+	max-height: 36px;
+}
+.navbar .dropdown-menu {
+	color: #999;
+	font-weight: normal;
+	border-radius: 1px;
+	border-color: #e5e5e5;
+	box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.navbar a, .navbar a:active {
+	color: #888;
+	padding: 8px 20px;
+	background: transparent;
+	line-height: normal;
+}
+
+
+.navbar .btn-primary, .navbar .btn-primary:active {
+	color: #fff;
+	background: #2cc1d4 !important;
+	border: none;
+}	
+.navbar .btn-primary:hover, .navbar .btn-primary:focus {		
+	color: #fff;
+	background: #5031bf !important;
+}
+
+.navbar .action-buttons .dropdown-toggle::after {
+	display: none;
+}
+
+@media (min-width: 1200px){
+	.form-inline .input-group {
+		width: 300px;
+		margin-left: 30px;
+	}
+}
+@media (max-width: 768px){
+	.navbar .dropdown-menu.action-form {
+		width: 100%;
+		padding: 10px 15px;
+		background: transparent;
+		border: none;
+	}
+	.navbar .form-inline {
+		display: block;
+	}
+	.navbar .input-group {
+		width: 100%;
+	}
+
+}
+
+
+
+
+
+/*Middle Section*/
+#home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+  
+}
+
+#home::before{
+    content: "";
+    background: url(../imghome/3649732.jpg) no-repeat center center/cover;
+    position: absolute;
+    width: 100%;
+    height: 912px;
+    top: 0;
+    left: 0px;
+    z-index: -1;
+    opacity: 0.9;
+    
+}
+
+
+
+
+h1{
+    text-align: center;
+}
+p{
+    text-align: center;
+}
+
+
+
+
+/*Courses Section*/
+
+#contain{
+    display: flex;
+	justify-content: space-evenly;
+	margin: 0px 20px;
+ 
+}
+
+#contain .box{
+    border: 2px solid brown;
+    margin: 12px;
+	background-color: #bff0f7;
+	border-radius: 15px;
+
+}
+
+#contain .box img{
+    height: 350px;
+    width: 350px;
+    margin: auto;
+    display: block;
+    padding: 12px 12px;
+}
+
+h5{
+    text-align: center;
+}
+
+.mid{
+    text-align: center;
+    margin: 12px;
+}
+
+#course-container{
+	
+    background-color: 2px solid black;
+    background: url(../imghome/annie-spratt-V1lmayjfBJc-unsplash.jpg) no-repeat center center/cover;
+   
+    height: 600px;
+	
+}
+
+
+
+
+/*footer*/
+
+footer{
+	background-color: rgb(156, 151, 151);
+    padding: 5px 10px;
+    text-align: center;
+}
+
+footer a:hover{
+    text-decoration: none;
+    
+}
+
+
+
+/*Register Section*/
+/*Radio button*/
+
+input[type="radio"]{
+    vertical-align: baseline;
+    margin: 12px 6px;
+}
+
+#evensPref{
+    margin-right: 0px;
+    margin-left: 12px;
+}
+
+#oddsPref{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+#register{
+	background: url(../imghome/3649732.jpg) no-repeat center center/cover;
+	padding: 12px 12px;
+}
+
+
+/*Login*/
+#login{
+	background: url(../imghome/3649732.jpg) no-repeat center center/cover;
+	padding: 12px 12px;
+}
+
+
+
+#container-5{
+    border: 2px solid rgb(116 232 251 / 88%);
+    text-align:center;
+    height:500px;
+    width:400px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+	background-color: #b4ded0;
+	
+    
+}
+
+#container-5::before{
+	content: "";
+	background-color:rgb(42, 81, 165);
+	
+}
+
+#container-5 h1{
+    margin:auto;
+	padding: 12px;
+    
+}
+.rower{
+    height:90px;
+    width:396px;
+    background-color:rgb(54, 218, 218);
+}
+
+
+
+
+/*About*/
+
+#about{
+	padding: 12px 12px;
+	position: relative;
+    height: 200%;
+    width: 100%;  
+	font-family: cursive;
+	font-weight: 900;
+	
+}
+
+
+#about::before{
+	content: "";
+	background: url(../imghome/3649732.jpg) no-repeat center center/cover;
+   position: absolute;
+	  
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.4;
+	  z-index: -1;
+}
+
+/*Contact*/
+#contact-section{
+	background: url("../imghome/3649732.jpg") no-repeat center;
+	background-size: cover;
+	padding: 40px 0;
+	text-align: center;
+  }
+  #contact-section h1{
+	text-align: center;
+	color: rgb(39, 16, 16);
+  }
+  .border{
+	width: 100px;
+	height: 10px;
+	background: #34495e;
+	margin: 40px auto;
+  }
+  
+  .contact-form{
+	max-width: 600px;
+	margin: auto;
+	padding: 0 10px;
+	overflow: hidden;
+  }
+  
+  .contact-form-text{
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 16px 0;
+	border: 0;
+	background: #111;
+	padding: 20px 40px;
+	outline: none;
+	color: #ddd;
+	transition: 0.5s;
+  }
+  .contact-form-text:focus{
+	box-shadow: 0 0 10px 4px #34495e;
+  }
+  textarea.contact-form-text{
+	resize: none;
+	height: 120px;
+  }
+  .contact-form-btn{
+	
+	border: 0;
+	background: #34495e;
+	color: #fff;
+	padding: 12px 50px;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: 0.5s;
+  }
+  .contact-form-btn:hover{
+	background: #2980b9;
+  }
+  

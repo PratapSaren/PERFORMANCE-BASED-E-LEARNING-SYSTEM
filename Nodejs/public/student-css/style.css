@@ -1,0 +1,24 @@
+#box{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+
+.card-img-top{
+    width: 200px;
+    height: 200px;
+}
+
+
+.card{
+    
+    margin: 40px 12px;
+    padding: 12px 12px;
+    text-align: center;
+    
+}
+
+#course{
+   background-color: rgb(199, 97, 97);
+}

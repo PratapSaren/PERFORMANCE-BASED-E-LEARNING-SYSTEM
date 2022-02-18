@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    </head>
+    <body onload="setTimeout(function () { submitform(); }, 900000);">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat &display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                background-color: #333
+            }
+
+            .container {
+                background-color: #555;
+                color: #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: 'Montserrat', sans-serif;
+                max-width: 700px
+            }
+
+            .container > p {
+                font-size: 32px
+            }
+
+            .question {
+                width: 75%
+            }
+
+            .options {
+                position: relative;
+                padding-left: 40px
+            }
+
+            #options label {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 14px;
+                cursor: pointer
+            }
+
+            .options input {
+                opacity: 0
+            }
+
+            .checkmark {
+                position: absolute;
+                top: -1px;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #555;
+                border: 1px solid #ddd;
+                border-radius: 50%
+            }
+
+            .options input:checked~.checkmark:after {
+                display: block
+            }
+
+            .options .checkmark:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark {
+                background: #21bf73;
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark:after {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            .btn-primary {
+                background-color: #555;
+                color: #ddd;
+                border: 1px solid #ddd
+            }
+
+            .btn-primary:hover {
+                background-color: #21bf73;
+                border: 1px solid #21bf73
+            }
+
+            .btn-success {
+                padding: 5px 25px;
+                background-color: #21bf73
+            }
+
+
+            @media (min-width: 577px) {
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+                .imp{
+                    margin: 0px 0px 20px 0px;
+                }
+            }
+
+            @media(min-width: 768px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+            }
+
+            @media(min-width: 840px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 0px 0px;
+                }
+            }
+
+
+            
+
+            @media(max-width:576px) {
+                .question {
+                    width: 100%;
+                    word-spacing: 2px
+                }
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 20%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 20%;
+                }
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+                
+
+            }
+
+            @media(max-width:450px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 16%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 16%;
+                }
+            }
+
+            @media(max-width:414px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 14%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 14%;
+                }
+            }
+
+
+            @media(max-width:360px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 8%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 8%;
+                }
+            }
+
+            @media(max-width:320px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 3%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 3%;
+                }
+            }
+          
+
+           
+        </style>
+
+
+        <div style="border: 2px solid red;">
+
+            <div style="text-align: center; color: white;">
+                <h1>MODULE - 2 (ADVANCED LEVEL)</h1>
+                <h2>MULTIPLE CHOICE QUESTIONS TEST</h2>
+            </div>
+
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <div style=" margin-left: 20%; margin-top: 3%; color: white;">
+
+                <h3>Rules And Regulations</h3>
+                <ul style="margin-left: 5%;">
+                    <li>Make sure that you write your name and Email ID correctly.<br>
+                        Otherwise, the system can't record your grades.</li>
+                    <li>The given time for this quiz is 30 minutes. After that, the form will be closed for you.</li>
+                    <li>Students who will not submit their answers in time will receive 0.</li>
+                    <li>You can only submit your answers once.</li>
+                    <li>Each question has its own grading points. After you submit your answers,<br>
+                         we will evaluate your answers and let you know your grades later.</li>
+                    <li>If you have any technical problem during the quiz, please take a screenshot<br>
+                        or screen recording and send us.</li>
+                </ul>
+            </div>
+
+            
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <form
+                action="/test/backadv" id="form1" method="POST">
+                <input type="hidden"  name="coursename" value="Web Development">
+                <input type="hidden"  name="coursenumber" value="200">
+                <input type="hidden"  name="level" value="advanced-2">
+
+
+                <div class="info" style="color: white;">
+                    <label style="margin: auto;"><h5 >Student Name </h5> </label>
+                    <div >
+                        <input class="imp"  style=" width: 300px;" type="text" name="username" placeholder="First name">
+                        <input class="inp" style=" width: 300px;" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    
+                </div>
+
+                <div class="infoemail"style="color: white;">
+                    <label style="margin: auto;"><h5>Email ID</h5></label>
+                    <div >
+                        <input style="width: 300px; margin-bottom: 3%;" type="email" name="email" placeholder="Email ID">
+                    </div>
+                </div>
+
+                <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+               
+
+                <!--Question-1-->
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Simple or complex functionality organized in a single or multiple JavaScript files which can be reused throughout your Node.js application is called ________.</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Library
+                                <input type="radio" name="q1_response" value="Library">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Package
+                                <input type="radio" name="q1_response" value="Package">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Function
+                                <input type="radio" name="q1_response" value="Function">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Module
+                                <input type="radio" name="q1_response" value="Module">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Question-2-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. ObjectId is a 12-byte BSON type, in which the last 3 bytes represent:</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">The Process ID
+                                <input type="radio" name="q2_response" value="The Process ID">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">The seconds since the Unix epoch
+                                <input type="radio" name="q2_response" value="The seconds since the Unix epoch">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">The machine identifier
+                                <input type="radio" name="q2_response" value="The machine identifier">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">A 3-byte counter, starting with a random value
+                                <input type="radio" name="q2_response" value="A 3-byte counter, starting with a random value">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---Question-3-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is the correct way to get a normalized path?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">os.normalize('/test/test1//2slashes/1slash/tab/..')
+                                <input type="radio" name="q3_response" value="os.normalize('/test/test1//2slashes/1slash/tab/..')">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">fs.normalize('/test/test1//2slashes/1slash/tab/..')
+                                <input type="radio" name="q3_response" value="fs.normalize('/test/test1//2slashes/1slash/tab/..')">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">path.normalize('/test/test1//2slashes/1slash/tab/..')
+                                <input type="radio" name="q3_response" value="path.normalize('/test/test1//2slashes/1slash/tab/..')">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q3_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-4-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  Which of the following module is required to create a web server?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">net module
+                                <input type="radio" name="q4_response" value="net module">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">http module
+                                <input type="radio" name="q4_response" value="http module">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">net module
+                                <input type="radio" name="q4_response" value="net module">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">url module
+                                <input type="radio" name="q4_response" value="url module">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-5-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is true about readable stream?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Readable stream is used for read operation
+                                <input type="radio" name="q5_response" value="Readable stream is used for read operation">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Output of readable stream can be input to a writable stream
+                                <input type="radio" name="q5_response" value="Output of readable stream can be input to a writable stream">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Both of the above
+                                <input type="radio" name="q5_response" value="Both of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q5_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-6-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. How many node types are there in total?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">13
+                                <input type="radio" name="q6_response" value="13">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">14
+                                <input type="radio" name="q6_response" value="14">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">12
+                                <input type="radio" name="q6_response" value="12">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">11
+                                <input type="radio" name="q6_response" value="11">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-7-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which is not a supported index type in MongoDB? </b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options"> TTL Index
+                                <input type="radio" name="q7_response" value="TTL Index">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Neospatial
+                                <input type="radio" name="q7_response" value="Neospatial">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Unique
+                                <input type="radio" name="q7_response" value="Unique">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of These
+                                <input type="radio" name="q7_response" value="None of These">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-8-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. In which format MongoDB represents document structure?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">BSON
+                                <input type="radio" name="q8_response" value="BSON">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">.txt
+                                <input type="radio" name="q8_response" value=".txt">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">.Docx
+                                <input type="radio" name="q8_response" value=".Docx">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of these
+                                <input type="radio" name="q8_response" value="None of these">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-9-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. How many byte counter in BSON is starting with a random value</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">4
+                                <input type="radio" name="q9_response" value="4">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">2
+                                <input type="radio" name="q9_response" value="2">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">3
+                                <input type="radio" name="q9_response" value="3">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q9_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-10-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  which field is always the first field in the document.?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">_id
+                                <input type="radio" name="q10_response" value="_id">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Ob_id
+                                <input type="radio" name="q10_response" value="Ob_id">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">id
+                                <input type="radio" name="q10_response" value="id">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of these
+                                <input type="radio" name="q10_response" value="None of these">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+                <!--Question-11-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the foliowing is wrong statement -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options"> MongoDB supports search by field, range queries, regular expression searches
+                                <input type="radio" name="q11_response" value=" MongoDB supports search by field, range queries, regular expression searches">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">MongoDB can store the business subject in the minimal number of documents
+                                <input type="radio" name="q11_response" value="MongoDB can store the business subject in the minimal number of documents">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Secondary indices is not available in MongoDB
+                                <input type="radio" name="q11_response" value="Secondary indices is not available in MongoDB">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q11_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-12-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. In how much time the MongDB writes are written to the journal?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">100 s
+                                <input type="radio" name="q12_response" value="100 s">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">60 s
+                                <input type="radio" name="q12_response" value="60 s">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">1 s
+                                <input type="radio" name="q12_response" value="1 s">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">100 ms
+                                <input type="radio" name="q12_response" value="100 ms">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-13-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The concatenation of the collection name and database name is called a -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Namespace
+                                <input type="radio" name="q13_response" value="Namespace">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">MongoDB
+                                <input type="radio" name="q13_response" value="MongoDB">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">sharding
+                                <input type="radio" name="q13_response" value="sharding">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">replica
+                                <input type="radio" name="q13_response" value="replica">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-14-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which statements is correct about mongoose in MongoDB ?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">It is Java library to connect with MongoDB
+                                <input type="radio" name="q14_response" value="It is Java library to connect with MongoDB">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It is used for modeling your application data in node.js
+                                <input type="radio" name="q14_response" value="It is used for modeling your application data in node.js">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It is Python library to connect with MongoDB
+                                <input type="radio" name="q14_response" value="It is Python library to connect with MongoDB">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It is a PHP library to connect with MongoDB
+                                <input type="radio" name="q14_response" value="It is a PHP library to connect with MongoDB">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-15-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is true about mongoDB?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">MongoDB is a cross-platform
+                                <input type="radio" name="q15_response" value="MongoDB is a cross-platform">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">MongoDB provides high performance
+                                <input type="radio" name="q15_response" value="MongoDB provides high performance">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">MongoDB is a document oriented database
+                                <input type="radio" name="q15_response" value="MongoDB is a document oriented database">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q15_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div style="text-align: center; margin: 40px 0px;">
+                    <button class="btn btn-primary" type="submit" form="form1" value="Submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+        <script>
+            function submitform() {
+            alert('<<<SUBMITTED>>>');
+            document.getElementById("form1").submit();
+        }
+        </script>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html></body></html>

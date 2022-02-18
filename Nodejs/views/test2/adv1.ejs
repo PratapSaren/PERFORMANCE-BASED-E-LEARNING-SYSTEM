@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    </head>
+    <body onload="setTimeout(function () { submitform(); }, 900000);">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat &display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                background-color: #333
+            }
+
+            .container {
+                background-color: #555;
+                color: #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: 'Montserrat', sans-serif;
+                max-width: 700px
+            }
+
+            .container > p {
+                font-size: 32px
+            }
+
+            .question {
+                width: 75%
+            }
+
+            .options {
+                position: relative;
+                padding-left: 40px
+            }
+
+            #options label {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 14px;
+                cursor: pointer
+            }
+
+            .options input {
+                opacity: 0
+            }
+
+            .checkmark {
+                position: absolute;
+                top: -1px;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #555;
+                border: 1px solid #ddd;
+                border-radius: 50%
+            }
+
+            .options input:checked~.checkmark:after {
+                display: block
+            }
+
+            .options .checkmark:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark {
+                background: #21bf73;
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark:after {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            .btn-primary {
+                background-color: #555;
+                color: #ddd;
+                border: 1px solid #ddd
+            }
+
+            .btn-primary:hover {
+                background-color: #21bf73;
+                border: 1px solid #21bf73
+            }
+
+            .btn-success {
+                padding: 5px 25px;
+                background-color: #21bf73
+            }
+
+
+            @media (min-width: 577px) {
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+                .imp{
+                    margin: 0px 0px 20px 0px;
+                }
+            }
+
+            @media(min-width: 768px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+            }
+
+            @media(min-width: 840px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 0px 0px;
+                }
+            }
+
+
+            
+
+            @media(max-width:576px) {
+                .question {
+                    width: 100%;
+                    word-spacing: 2px
+                }
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 20%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 20%;
+                }
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+                
+
+            }
+
+            @media(max-width:450px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 16%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 16%;
+                }
+            }
+
+            @media(max-width:414px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 14%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 14%;
+                }
+            }
+
+
+            @media(max-width:360px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 8%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 8%;
+                }
+            }
+
+            @media(max-width:320px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 3%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 3%;
+                }
+            }
+          
+
+           
+        </style>
+
+
+        <div style="border: 2px solid red;">
+
+            <div style="text-align: center; color: white;">
+                <h1>MODULE - 1 (ADVANCED LEVEL)</h1>
+                <h2>MULTIPLE CHOICE QUESTIONS TEST</h2>
+            </div>
+
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <div style=" margin-left: 20%; margin-top: 3%; color: white;">
+
+                <h3>Rules And Regulations</h3>
+                <ul style="margin-left: 5%;">
+                    <li>Make sure that you write your name and Email ID correctly.<br>
+                        Otherwise, the system can't record your grades.</li>
+                    <li>The given time for this quiz is 30 minutes. After that, the form will be closed for you.</li>
+                    <li>Students who will not submit their answers in time will receive 0.</li>
+                    <li>You can only submit your answers once.</li>
+                    <li>Each question has its own grading points. After you submit your answers,<br>
+                         we will evaluate your answers and let you know your grades later.</li>
+                    <li>If you have any technical problem during the quiz, please take a screenshot<br>
+                        or screen recording and send us.</li>
+                </ul>
+            </div>
+
+            
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <form
+                action="/test2/adv" id="form1" method="POST">
+                <input type="hidden"  name="coursename" value="Programming Using Python">
+                <input type="hidden"  name="coursenumber" value="201">
+                <input type="hidden"  name="level" value="advanced-1">
+
+
+
+                <div class="info" style="color: white;">
+                    <label style="margin: auto;"><h5 >Student Name </h5> </label>
+                    <div >
+                        <input class="imp"  style=" width: 300px;" type="text" name="username" placeholder="First name">
+                        <input class="inp" style=" width: 300px;" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    
+                </div>
+
+                <div class="infoemail"style="color: white;">
+                    <label style="margin: auto;"><h5>Email ID</h5></label>
+                    <div >
+                        <input style="width: 300px; margin-bottom: 3%;" type="email" name="email" placeholder="Email ID">
+                    </div>
+                </div>
+
+                <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+               
+
+                <!--Question-1-->
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Output of: max(''please help'')</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">please help
+                                <input type="radio" name="q1_response" value="please help">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Error
+                                <input type="radio" name="q1_response" value="Error">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">p
+                                <input type="radio" name="q1_response" value="p">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">s
+                                <input type="radio" name="q1_response" value="s">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Question-2-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What command is used to shuffle a list ‘L’?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">L.shuffle()
+                                <input type="radio" name="q2_response" value="L.shuffle()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">random.shufflelist(L)
+                                <input type="radio" name="q2_response" value="random.shufflelist(L)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">shuffle(L)
+                                <input type="radio" name="q2_response" value="shuffle(L)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">random.shuffle(L)
+                                <input type="radio" name="q2_response" value="random.shuffle(L)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---Question-3-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is used to define a block of code (body of loop, if else etc.) in Python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Indentation
+                                <input type="radio" name="q3_response" value="Indentation">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Curly Braces
+                                <input type="radio" name="q3_response" value="Curly Braces">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Parenthesis
+                                <input type="radio" name="q3_response" value="Parenthesis">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Quotation
+                                <input type="radio" name="q3_response" value="Quotation">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-4-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Suppose a tuple test contains 5 elements. How can you set the 3rd element of the tuple to ‘Python’?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">test[2] = 'Python'
+                                <input type="radio" name="q4_response" value="test[2] = 'Python'">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">test[3] = 'Python'
+                                <input type="radio" name="q4_response" value="test[3] = 'Python'">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">test(2) = 'Python'
+                                <input type="radio" name="q4_response" value="test(2) = 'Python'">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Elements of tuple cannot be changed
+                                <input type="radio" name="q4_response" value="Elements of tuple cannot be changed">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-5-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Write a list comprehension to produce the list: [1, 2, 4, 8, 16……212].</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">[(2**x) for x in range(0, 13)]
+                                <input type="radio" name="q5_response" value="[(2**x) for x in range(0, 13)]">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">[(2**x) for x in range(1, 13)]
+                                <input type="radio" name="q5_response" value="[(2**x) for x in range(1, 13)]">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">[(x**2) for x in range(0, 13)]
+                                <input type="radio" name="q5_response" value="[(x**2) for x in range(0, 13)]">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">[(x**2) for x in range(1, 13)]
+                                <input type="radio" name="q5_response" value="[(x**2) for x in range(1, 13)]">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-6-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. If a=(1,2,3,4), a[1:-1] is</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">[2,3]
+                                <input type="radio" name="q6_response" value="[2,3]">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">(2,3)
+                                <input type="radio" name="q6_response" value="(2,3)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">[2,3,4]
+                                <input type="radio" name="q6_response" value="[2,3,4]">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Error, slicing doesn't exist
+                                <input type="radio" name="q6_response" value="Error, slicing doesn't exist">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-7-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. A named sequence of statements is known as which of the following?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">definition
+                                <input type="radio" name="q7_response" value="definition">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">method
+                                <input type="radio" name="q7_response" value="method">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">module
+                                <input type="radio" name="q7_response" value="module">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">function
+                                <input type="radio" name="q7_response" value="function">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-8-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following would NOT work as a variable name?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">a
+                                <input type="radio" name="q8_response" value="a">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">len
+                                <input type="radio" name="q8_response" value="len">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">length
+                                <input type="radio" name="q8_response" value="length">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">x
+                                <input type="radio" name="q8_response" value="x">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-9-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is called when a function is defined inside a class?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">class
+                                <input type="radio" name="q9_response" value="class">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">function
+                                <input type="radio" name="q9_response" value="function">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">method
+                                <input type="radio" name="q9_response" value="method">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">module
+                                <input type="radio" name="q9_response" value="module">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-10-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. If return statement is not used inside the function, the function will return:</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">None
+                                <input type="radio" name="q10_response" value="None">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">0
+                                <input type="radio" name="q10_response" value="0">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Null
+                                <input type="radio" name="q10_response" value="Null">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Arbitary value
+                                <input type="radio" name="q10_response" value="Arbitary value">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+                <!--Question-11-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is the use of id() function in python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Id() returns the size of object.
+                                <input type="radio" name="q11_response" value="Id() returns the size of object.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Id() returns the identity of the object.
+                                <input type="radio" name="q11_response" value="Id() returns the identity of the object.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Both of the above
+                                <input type="radio" name="q11_response" value="Both of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q11_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-12-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following function headers is correct?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">def fun(a = 2, b = 3, c)
+                                <input type="radio" name="q12_response" value="def fun(a = 2, b = 3, c)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">def fun(a = 2, b, c = 3)
+                                <input type="radio" name="q12_response" value="def fun(a = 2, b, c = 3)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">def fun(a, b = 2, c = 3)
+                                <input type="radio" name="q12_response" value="def fun(a, b = 2, c = 3)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">def fun(a, b, c = 3, d)
+                                <input type="radio" name="q12_response" value="def fun(a, b, c = 3, d)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-13-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. In which part of memory does the system stores the parameter and local variables of funtion call?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">heap
+                                <input type="radio" name="q13_response" value="heap">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">stack
+                                <input type="radio" name="q13_response" value="stack">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Uninitialized data segment
+                                <input type="radio" name="q13_response" value="Uninitialized data segment">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q13_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-14-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Lambda is a function in python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">True
+                                <input type="radio" name="q14_response" value="True">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">False
+                                <input type="radio" name="q14_response" value="False">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Lambda is a function in python but user can not use it.
+                                <input type="radio" name="q14_response" value="Lambda is a function in python but user can not use it.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q14_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-15-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which one of the following is incorrect?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">The variables used inside function are called local variables.
+                                <input type="radio" name="q15_response" value="The variables used inside function are called local variables.">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">The local variables of a particular function can be used inside other functions, but these cannot be used in global space
+                                <input type="radio" name="q15_response" value="The local variables of a particular function can be used inside other functions, but these cannot be used in global space">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">The variables used outside function are called global variables
+                                <input type="radio" name="q15_response" value="The variables used outside function are called global variables">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">In order to change the value of global variable inside function, keyword global is used.
+                                <input type="radio" name="q15_response" value="In order to change the value of global variable inside function, keyword global is used.">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div style="text-align: center; margin: 40px 0px;">
+                    <button class="btn btn-primary" type="submit" form="form1" value="Submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+        <script>
+            function submitform() {
+            alert('<<<SUBMITTED>>>');
+            document.getElementById("form1").submit();
+        }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html></body></html>

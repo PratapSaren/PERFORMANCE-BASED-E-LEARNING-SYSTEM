@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    </head>
+    <body onload="setTimeout(function () { submitform(); }, 900000);">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat &display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                background-color: #333
+            }
+
+            .container {
+                background-color: #555;
+                color: #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: 'Montserrat', sans-serif;
+                max-width: 700px
+            }
+
+            .container > p {
+                font-size: 32px
+            }
+
+            .question {
+                width: 75%
+            }
+
+            .options {
+                position: relative;
+                padding-left: 40px
+            }
+
+            #options label {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 14px;
+                cursor: pointer
+            }
+
+            .options input {
+                opacity: 0
+            }
+
+            .checkmark {
+                position: absolute;
+                top: -1px;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #555;
+                border: 1px solid #ddd;
+                border-radius: 50%
+            }
+
+            .options input:checked~.checkmark:after {
+                display: block
+            }
+
+            .options .checkmark:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark {
+                background: #21bf73;
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark:after {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            .btn-primary {
+                background-color: #555;
+                color: #ddd;
+                border: 1px solid #ddd
+            }
+
+            .btn-primary:hover {
+                background-color: #21bf73;
+                border: 1px solid #21bf73
+            }
+
+            .btn-success {
+                padding: 5px 25px;
+                background-color: #21bf73
+            }
+
+
+            @media (min-width: 577px) {
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+                .imp{
+                    margin: 0px 0px 20px 0px;
+                }
+            }
+
+            @media(min-width: 768px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+            }
+
+            @media(min-width: 840px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 0px 0px;
+                }
+            }
+
+
+            
+
+            @media(max-width:576px) {
+                .question {
+                    width: 100%;
+                    word-spacing: 2px
+                }
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 20%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 20%;
+                }
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+                
+
+            }
+
+            @media(max-width:450px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 16%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 16%;
+                }
+            }
+
+            @media(max-width:414px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 14%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 14%;
+                }
+            }
+
+
+            @media(max-width:360px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 8%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 8%;
+                }
+            }
+
+            @media(max-width:320px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 3%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 3%;
+                }
+            }
+          
+
+           
+        </style>
+
+
+        <div style="border: 2px solid red;">
+
+            <div style="text-align: center; color: white;">
+                <h1>MODULE - 1 (BEGINNER LEVEL)</h1>
+                <h2>MULTIPLE CHOICE QUESTIONS TEST</h2>
+            </div>
+
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <div style=" margin-left: 20%; margin-top: 3%; color: white;">
+
+                <h3>Rules And Regulations</h3>
+                <ul style="margin-left: 5%;">
+                    <li>Make sure that you write your name and Email ID correctly.<br>
+                        Otherwise, the system can't record your grades.</li>
+                    <li>The given time for this quiz is 30 minutes. After that, the form will be closed for you.</li>
+                    <li>Students who will not submit their answers in time will receive 0.</li>
+                    <li>You can only submit your answers once.</li>
+                    <li>Each question has its own grading points. After you submit your answers,<br>
+                         we will evaluate your answers and let you know your grades later.</li>
+                    <li>If you have any technical problem during the quiz, please take a screenshot<br>
+                        or screen recording and send us.</li>
+                </ul>
+            </div>
+
+            
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <form
+                action="/test2/beg" id="form1" method="POST">
+                <input type="hidden"  name="coursename" value="Programming Using Python">
+                <input type="hidden"  name="coursenumber" value="201">
+                <input type="hidden"  name="level" value="beginner-1">
+
+                <div class="info" style="color: white;">
+                    <label style="margin: auto;"><h5 >Student Name </h5> </label>
+                    <div >
+                        <input class="imp"  style=" width: 300px;" type="text" name="username" placeholder="First name">
+                        <input class="inp" style=" width: 300px;" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    
+                </div>
+
+                <div class="infoemail"style="color: white;">
+                    <label style="margin: auto;"><h5>Email ID</h5></label>
+                    <div >
+                        <input style="width: 300px; margin-bottom: 3%;" type="email" name="email" placeholder="Email ID">
+                    </div>
+                </div>
+
+                <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+               
+
+                <!--Question-1-->
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. In which language is Python written?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">English
+                                <input type="radio" name="q1_response" value="English">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">PHP
+                                <input type="radio" name="q1_response" value="PHP">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">C
+                                <input type="radio" name="q1_response" value="C">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q1_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Question-2-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which one of the following is the correct extension of the Python file?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">.py
+                                <input type="radio" name="q2_response" value=".py">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">.python
+                                <input type="radio" name="q2_response" value=".python">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">.p
+                                <input type="radio" name="q2_response" value=".p">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of these
+                                <input type="radio" name="q2_response" value="None of these">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---Question-3-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What do we use to define a block of code in Python language?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Key
+                                <input type="radio" name="q3_response" value="Key">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Brackets
+                                <input type="radio" name="q3_response" value="Brackets">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Indentation
+                                <input type="radio" name="q3_response" value="Indentation">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of these
+                                <input type="radio" name="q3_response" value="None of these">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-4-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  Which of the following statements is correct regarding the object-oriented programming concept in Python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Classes are real-world entities while objects are not real
+                                <input type="radio" name="q4_response" value="Classes are real-world entities while objects are not real">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Objects are real-world entities while classes are not real
+                                <input type="radio" name="q4_response" value="Objects are real-world entities while classes are not real">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Both objects and classes are real-world entities
+                                <input type="radio" name="q4_response" value="Both objects and classes are real-world entities">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q4_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-5-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is the method inside the class in python language?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Object
+                                <input type="radio" name="q5_response" value="Object">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Function
+                                <input type="radio" name="q5_response" value="Function">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Attribute
+                                <input type="radio" name="q5_response" value="Attribute">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Argument
+                                <input type="radio" name="q5_response" value="Argument">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-6-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following declarations is incorrect?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">_x = 2
+                                <input type="radio" name="q6_response" value="_x = 2">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">__x = 3
+                                <input type="radio" name="q6_response" value="__x = 3">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">__xyz__ = 5
+                                <input type="radio" name="q6_response" value="__xyz__ = 5">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of these
+                                <input type="radio" name="q6_response" value="None of these">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-7-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Why does the name of local variables start with an underscore discouraged?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">To identify the variable
+                                <input type="radio" name="q7_response" value="To identify the variable">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It confuses the interpreter
+                                <input type="radio" name="q7_response" value="It confuses the interpreter">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It indicates a private variable of a class
+                                <input type="radio" name="q7_response" value="It indicates a private variable of a class">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of these
+                                <input type="radio" name="q7_response" value="None of these">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-8-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is not a keyword in Python language?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">val
+                                <input type="radio" name="q8_response" value="val">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">raise
+                                <input type="radio" name="q8_response" value="raise">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">try
+                                <input type="radio" name="q8_response" value="try">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">with
+                                <input type="radio" name="q8_response" value="with">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-9-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following precedence order is correct in Python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Parentheses, Exponential, Multiplication, Division, Addition, Subtraction
+                                <input type="radio" name="q9_response" value="Parentheses, Exponential, Multiplication, Division, Addition, Subtraction">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Multiplication, Division, Addition, Subtraction, Parentheses, Exponential
+                                <input type="radio" name="q9_response" value="Multiplication, Division, Addition, Subtraction, Parentheses, Exponential">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Division, Multiplication, Addition, Subtraction, Parentheses, Exponential
+                                <input type="radio" name="q9_response" value="Division, Multiplication, Addition, Subtraction, Parentheses, Exponential">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Exponential, Parentheses, Multiplication, Division, Addition, Subtraction
+                                <input type="radio" name="q9_response" value="Exponential, Parentheses, Multiplication, Division, Addition, Subtraction">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-10-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which method is used to display a warning message in Python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Tkinter.message.showmessage('message here')
+                                <input type="radio" name="q10_response" value="Tkinter.message.showmessage('message here')">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Tkinter.message.sshowwarning('message here')
+                                <input type="radio" name="q10_response" value="Tkinter.message.sshowwarning('message here')">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Tkinter.messagebox.showwarning('message here')
+                                <input type="radio" name="q10_response" value="Tkinter.messagebox.showwarning('message here')">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Tkinter.messagebox.showmessage('message here')
+                                <input type="radio" name="q10_response" value="Tkinter.messagebox.showmessage('message here')">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+                <!--Question-11-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Operators with the same precedence are evaluated in which manner?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Left to Right
+                                <input type="radio" name="q11_response" value="Left to Right">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Right to Left
+                                <input type="radio" name="q11_response" value="Right to Left">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Can’t say
+                                <input type="radio" name="q11_response" value="Can’t say">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the mentioned
+                                <input type="radio" name="q11_response" value="None of the mentioned">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-12-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of these in not a core data type?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Lists
+                                <input type="radio" name="q12_response" value="Lists">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Dictionary
+                                <input type="radio" name="q12_response" value="Dictionary">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Tuples
+                                <input type="radio" name="q12_response" value="Tuples">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Class
+                                <input type="radio" name="q12_response" value="Class">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-13-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Given a function that does not return any value, What value is thrown by default when executed in shell.</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">int
+                                <input type="radio" name="q13_response" value="int">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">bool
+                                <input type="radio" name="q13_response" value="bool">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">void
+                                <input type="radio" name="q13_response" value="void">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None
+                                <input type="radio" name="q13_response" value="None">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-14-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following will run without errors?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">round(45.8)
+                                <input type="radio" name="q14_response" value="round(45.8)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">round(6352.898,2,5)
+                                <input type="radio" name="q14_response" value="round(6352.898,2,5)">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">round()
+                                <input type="radio" name="q14_response" value="round()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">round(7463.123,2,1)
+                                <input type="radio" name="q14_response" value="round(7463.123,2,1)">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-15-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is the return type of function id?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">int
+                                <input type="radio" name="q15_response" value="int">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">float
+                                <input type="radio" name="q15_response" value="float">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">bool
+                                <input type="radio" name="q15_response" value="bool">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">dict
+                                <input type="radio" name="q15_response" value="dict">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div style="text-align: center; margin: 40px 0px;">
+                    <button class="btn btn-primary" type="submit" form="form1" value="Submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <script>
+            function submitform() {
+            alert('<<<SUBMITTED>>>');
+            document.getElementById("form1").submit();
+        }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html></body></html>

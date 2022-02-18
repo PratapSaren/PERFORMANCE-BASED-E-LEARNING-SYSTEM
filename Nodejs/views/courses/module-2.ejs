@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" class="no-js" style="background-color: rgb(157, 243, 157);">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="theme-color" content="#3e454c">
+
+	<title>Edusys || Admin-Login</title>
+
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="/public/admin-css/css/font-awesome.min.css">
+	<!-- Sandstone Bootstrap CSS -->
+	<link rel="stylesheet" href="/public/admin-css/css/bootstrap.min.css">
+	<!-- Bootstrap Datatables -->
+	<link rel="stylesheet" href="/public/admin-css/css/dataTables.bootstrap.min.css">
+	<!-- Bootstrap social button library -->
+	<link rel="stylesheet" href="/public/admin-css/css/bootstrap-social.css">
+	<!-- Bootstrap select -->
+	<link rel="stylesheet" href="/public/admin-css/css/bootstrap-select.css">
+	<!-- Bootstrap file input -->
+	<link rel="stylesheet" href="/public/admin-css/css/fileinput.min.css">
+	<!-- Awesome Bootstrap checkbox -->
+	<link rel="stylesheet" href="/public/admin-css/css/awesome-bootstrap-checkbox.css">
+	<!-- Admin Stye -->
+	<link rel="stylesheet" href="/public/admin-css/css/style.css">
+
+
+	<link rel="stylesheet" href="/public/student-css/style.css">
+
+
+
+
+</head>
+
+<body>
+	<div class="brand clearfix">
+		<a href="#" class="navbar-brand">Edu<b>sys</b></a>
+		<span class="menu-btn"><i class="fa fa-bars"></i></span>
+		<ul class="ts-profile-nav">
+
+			<li class="ts-account">
+				<a href="#"><img src="/public/admin-css/img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">
+					<%= user.username %><i class="fa fa-angle-down hidden-side"></i>
+				</a>
+				<ul>
+					<li><a href="/profile">My Account</a></li>
+					
+					<li><a href="/logout">Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div class="ts-main-content" style=" height: 90vh; background-color: rgb(157, 243, 157);">
+		<nav class="ts-sidebar">
+			<ul class="ts-sidebar-menu">
+
+				<li class="ts-label">Overview</li>
+				<li><a href="/student/student-dashboard"><i class="fa fa-pencil" aria-hidden="true"></i> Dashboard</a>
+				</li>
+				<li><a href="#"><i class="fa fa-pencil" aria-hidden="true"></i> Web Development </a>
+					<ul>
+						<li><a href="#"><i class="fa fa-futbol-o" aria-hidden="true"></i> MODULE - 1 </a>
+						</li>
+						<li class="open"><a href="#"><i class="fa fa-futbol-o" aria-hidden="true"></i> MODULE - 2 </a></li>
+						<li><a href="#"><i class="fa fa-futbol-o" aria-hidden="true"></i> MODULE - 3 </a></li>
+
+					</ul>
+				</li>
+				
+
+
+				
+				
+
+				<!-- Account from above -->
+				<ul class="ts-profile-nav">
+
+					<li class="ts-account">
+						<a href="#"><img src="img/ts-avatar.jpg" class="ts-avatar hidden-side" alt="">
+							<%= user.username %><i class="fa fa-angle-down hidden-side"></i>
+						</a>
+						<ul>
+							<li><a href="/profile">My Account</a></li>
+							
+							<li><a href="/logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+
+			</ul>
+		</nav>
+
+
+		<div class="content-wrapper" style="background-color: rgb(157, 243, 157);">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-12" >
+
+						<% obj.forEach(element =>{ %>
+							<% var object = element %> 
+
+						
+
+						<h2 class="page-title"
+							style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif; font-weight: 700;">
+							<%= object.coursename %>
+						</h2>
+
+						<div class="row" >
+
+							<% if( pass.length > 0) { %>
+								<div  class="alert alert-warning alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<p style="color: black; text-align: center;"><strong><<<   <%= pass %> >>>   </strong></p>
+								  </div>
+								<% } %>
+
+
+
+							<div class="col-md-12" >
+								<div class="row" >
+
+
+									<div class="col-md-7">
+										<div class="panel panel-default"
+											style=" margin-top: 20px;">
+											<div class="panel-heading">Name Of The Module : <%= object.module_two_name %></div>
+											<div class="panel-body" >
+												<h1
+													style="font-size: medium; font-family: 'Times New Roman', Times, serif;">
+													Description :</h1>
+												<div id="legendDiv" style="height: auto; ">
+													<p
+														style="font-family:'Times New Roman', Times, serif; white-space:pre-line; text-align: justify;">
+														<%= object.description_two %> 
+													</p>
+
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+									<div class="col-md-5">
+										<div class="panel panel-default"
+											style=" margin-top: 20px;">
+											<div class="panel-heading">VIDEO</div>
+											<div class="panel-body">
+												<div class="row">
+													<div class="col-md-12" >
+														<div class="chart chart-doughnut">
+															<div class="embed-responsive embed-responsive-16by9">
+																<iframe class="embed-responsive-item"
+																	src="<%= object.video_two %>"
+																	allowfullscreen></iframe>
+															</div>
+
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+								</div>
+
+
+
+
+
+							</div>
+
+
+							<div class="col-md-12" >
+
+								<div class="row" >
+
+
+									<div class="panel panel-warning">
+										<div class="panel-heading">
+											<h3 class="panel-title">STUDY MATERIALS </h3>
+										</div>
+										<div class="panel-body"
+											style="border: 2px solid #f47c3c;  font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight: 600; ">
+
+											PDF NOTES FOR MODULE - 2
+											<a href="<%= object.pdf_two %>" class="btn btn-warning" style="float: right;">DOWNLOAD</a>
+										</div>
+									</div>
+
+									<div class="panel panel-danger">
+										<div class="panel-heading">
+											<h3 class="panel-title">MODULE EVALUATION TEST</h3>
+										</div>
+										<div class="panel-body"
+											style="border: 2px solid #d9534f;  font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight: 600; ">
+											MODULE - 2 EVALUATION TEST(BEGINNER)
+											<a href="/test/backbeg" class="btn btn-danger" style="float: right;">TAKE TEST</a>
+
+										</div>
+									</div>
+
+									<div class="panel panel-danger">
+										<div class="panel-heading">
+											<h3 class="panel-title">MODULE EVALUATION TEST</h3>
+										</div>
+										<div class="panel-body"
+											style="border: 2px solid #d9534f;  font-family:Verdana, Geneva, Tahoma, sans-serif; font-weight: 600; ">
+											MODULE - 2 EVALUATION TEST(ADVANCED)
+											<a href="/test/backadv" class="btn btn-danger" style="float: right;">TAKE TEST</a>
+
+										</div>
+									</div>
+
+
+
+
+
+									<form method="GET" action="/courses/webdevelopment/module-3" style="text-align: center;">
+										<button type="submit" class="btn btn-primary">CONTINUE</button>
+									</form>
+
+								</div>
+
+
+							</div>
+
+
+
+
+
+
+
+
+						</div>
+
+						<% }) %> 
+
+
+					</div>
+
+
+
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+	</div>
+
+	<footer style="position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: red;
+	color: white;
+	text-align:center;
+	">
+		<p style="padding-bottom: 0px;
+		margin-bottom: 0px;">Copyright &copy 2021 <a href="#"
+				style="color:rgb(192, 150, 247);"><strong>Edusys.com</strong></a> | All Rights Reserved</p>
+	</footer>
+
+	<!-- Loading Scripts -->
+	<script src="/public/admin-css/js/jquery.min.js"></script>
+	<script src="/public/admin-css/js/bootstrap-select.min.js"></script>
+	<script src="/public/admin-css/js/bootstrap.min.js"></script>
+	<script src="/public/admin-css/js/jquery.dataTables.min.js"></script>
+	<script src="/public/admin-css/js/dataTables.bootstrap.min.js"></script>
+	<script src="/public/admin-css/js/Chart.min.js"></script>
+	<script src="/public/admin-css/js/fileinput.js"></script>
+	<script src="/public/admin-css/js/chartData.js"></script>
+	<script src="/public/admin-css/js/main.js"></script>
+
+
+
+</body>
+
+</html>

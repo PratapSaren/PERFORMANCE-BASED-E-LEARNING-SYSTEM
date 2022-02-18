@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "60c3b37ebf63b946acd5cfbc"
+  },
+  "role": true,
+  "username": "admin",
+  "lastname": "saren",
+  "email": "admin@gmail.com",
+  "gender": "Male",
+  "birthday": {
+    "$date": "1998-08-11T00:00:00Z"
+  },
+  "city": "Pune",
+  "country": "India",
+  "password": "$2a$10$iXfPoL86wBmMwCWYRK62JuZXT.7Hj0MjOzH5YUH7d70rJDPn7uEm.",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c3b5cd90a23140f01c8ba0"
+  },
+  "role": false,
+  "username": "PRATAP",
+  "lastname": "SAREN",
+  "email": "AXELBLAZE.PRATAP.SAREN@GMAIL.COM",
+  "gender": "Male",
+  "birthday": {
+    "$date": "1998-08-11T00:00:00Z"
+  },
+  "city": "Kolkata",
+  "country": "India",
+  "password": "$2a$10$PhNsaxCdBNfn/QJJwgiv9OFr1yYXpywD7aD1Z.l3XM42oqNG.oos6",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60cd5f27a064d730f4327d74"
+  },
+  "role": false,
+  "username": "Fan",
+  "lastname": "Xingluo",
+  "email": "fanx@gmail.com",
+  "gender": "Female",
+  "birthday": {
+    "$date": "1997-09-12T00:00:00Z"
+  },
+  "city": "New York",
+  "country": "United States",
+  "password": "$2a$10$sqsi0HILvfj19jUu7qItBuuGSK.f2ZxskeJdgOD0KFAJCGggGDWlO",
+  "__v": 0
+}]

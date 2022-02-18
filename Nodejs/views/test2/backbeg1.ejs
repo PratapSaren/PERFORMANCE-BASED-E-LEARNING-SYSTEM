@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    </head>
+    <body onload="setTimeout(function () { submitform(); }, 900000);">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat &display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                background-color: #333
+            }
+
+            .container {
+                background-color: #555;
+                color: #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: 'Montserrat', sans-serif;
+                max-width: 700px
+            }
+
+            .container > p {
+                font-size: 32px
+            }
+
+            .question {
+                width: 75%
+            }
+
+            .options {
+                position: relative;
+                padding-left: 40px
+            }
+
+            #options label {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 14px;
+                cursor: pointer
+            }
+
+            .options input {
+                opacity: 0
+            }
+
+            .checkmark {
+                position: absolute;
+                top: -1px;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #555;
+                border: 1px solid #ddd;
+                border-radius: 50%
+            }
+
+            .options input:checked~.checkmark:after {
+                display: block
+            }
+
+            .options .checkmark:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark {
+                background: #21bf73;
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark:after {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            .btn-primary {
+                background-color: #555;
+                color: #ddd;
+                border: 1px solid #ddd
+            }
+
+            .btn-primary:hover {
+                background-color: #21bf73;
+                border: 1px solid #21bf73
+            }
+
+            .btn-success {
+                padding: 5px 25px;
+                background-color: #21bf73
+            }
+
+
+            @media (min-width: 577px) {
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+                .imp{
+                    margin: 0px 0px 20px 0px;
+                }
+            }
+
+            @media(min-width: 768px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+            }
+
+            @media(min-width: 840px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 0px 0px;
+                }
+            }
+
+
+            
+
+            @media(max-width:576px) {
+                .question {
+                    width: 100%;
+                    word-spacing: 2px
+                }
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 20%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 20%;
+                }
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+                
+
+            }
+
+            @media(max-width:450px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 16%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 16%;
+                }
+            }
+
+            @media(max-width:414px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 14%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 14%;
+                }
+            }
+
+
+            @media(max-width:360px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 8%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 8%;
+                }
+            }
+
+            @media(max-width:320px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 3%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 3%;
+                }
+            }
+          
+
+           
+        </style>
+
+
+        <div style="border: 2px solid red;">
+
+            <div style="text-align: center; color: white;">
+                <h1>MODULE - 2 (BEGINNER LEVEL)</h1>
+                <h2>MULTIPLE CHOICE QUESTIONS TEST</h2>
+            </div>
+
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <div style=" margin-left: 20%; margin-top: 3%; color: white;">
+
+                <h3>Rules And Regulations</h3>
+                <ul style="margin-left: 5%;">
+                    <li>Make sure that you write your name and Email ID correctly.<br>
+                        Otherwise, the system can't record your grades.</li>
+                    <li>The given time for this quiz is 30 minutes. After that, the form will be closed for you.</li>
+                    <li>Students who will not submit their answers in time will receive 0.</li>
+                    <li>You can only submit your answers once.</li>
+                    <li>Each question has its own grading points. After you submit your answers,<br>
+                         we will evaluate your answers and let you know your grades later.</li>
+                    <li>If you have any technical problem during the quiz, please take a screenshot<br>
+                        or screen recording and send us.</li>
+                </ul>
+            </div>
+
+            
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <form
+                action="/test2/backbeg" id="form1" method="POST">
+                <input type="hidden"  name="coursename" value="Programming Using Python">
+                <input type="hidden"  name="coursenumber" value="201">
+                <input type="hidden"  name="level" value="beginner-2">
+
+
+                <div class="info" style="color: white;">
+                    <label style="margin: auto;"><h5 >Student Name </h5> </label>
+                    <div >
+                        <input class="imp"  style=" width: 300px;" type="text" name="username" placeholder="First name">
+                        <input class="inp" style=" width: 300px;" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    
+                </div>
+
+                <div class="infoemail"style="color: white;">
+                    <label style="margin: auto;"><h5>Email ID</h5></label>
+                    <div >
+                        <input style="width: 300px; margin-bottom: 3%;" type="email" name="email" placeholder="Email ID">
+                    </div>
+                </div>
+
+                <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+               
+
+                <!--Question-1-->
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is the way we match the "start of a line" in a regular expression?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">^
+                                <input type="radio" name="q1_response" value="^">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">str.startswith()
+                                <input type="radio" name="q1_response" value="str.startswith()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">\linestart
+                                <input type="radio" name="q1_response" value="\linestart">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">String.startsWith()
+                                <input type="radio" name="q1_response" value="String.startsWith()">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Question-2-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What would the following mean in a regular expression? [a-z0-9]</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Match any text that is surrounded by square braces
+                                <input type="radio" name="q2_response" value="Match any text that is surrounded by square braces">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Match anything but a lowercase letter or digit
+                                <input type="radio" name="q2_response" value="Match anything but a lowercase letter or digit">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Match an entire line as long as it is lowercase letters or digits
+                                <input type="radio" name="q2_response" value="Match an entire line as long as it is lowercase letters or digits">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Match a lowercase letter or a digit
+                                <input type="radio" name="q2_response" value="Match a lowercase letter or a digit">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---Question-3-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is the type of the return value of the re.findall() method?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">A boolean
+                                <input type="radio" name="q3_response" value="A boolean">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">A single character
+                                <input type="radio" name="q3_response" value="A single character">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">A list of strings
+                                <input type="radio" name="q3_response" value="A list of strings">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">A string
+                                <input type="radio" name="q3_response" value="A string">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-4-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What does the "[0-9]+" match in a regular expression?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Several digits followed by a plus sign
+                                <input type="radio" name="q4_response" value="Several digits followed by a plus sign">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">One or more digits
+                                <input type="radio" name="q4_response" value="One or more digits">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Any mathematical expression
+                                <input type="radio" name="q4_response" value="Any mathematical expression">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Zero or more digits
+                                <input type="radio" name="q4_response" value="Zero or more digits">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-5-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What character do you add to the "+" or "*" to indicate that the match is to be done in a non-greedy manner?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">?
+                                <input type="radio" name="q5_response" value="?">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">**
+                                <input type="radio" name="q5_response" value="**">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">++
+                                <input type="radio" name="q5_response" value="++">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">^
+                                <input type="radio" name="q5_response" value="^">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-6-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What do we call it when a browser uses the HTTP protocol to load a file or page from a server and display it in the browser?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">IMAP
+                                <input type="radio" name="q6_response" value="IMAP">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">SMTP
+                                <input type="radio" name="q6_response" value="SMTP">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">DECNET
+                                <input type="radio" name="q6_response" value="DECNET">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">The Request/Response Cycle
+                                <input type="radio" name="q6_response" value="The Request/Response Cycle">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-7-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What separates the HTTP headers from the body of the HTTP document?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Four dashes
+                                <input type="radio" name="q7_response" value="Four dashes">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">A less-than sign indicating the start of an HTML tag
+                                <input type="radio" name="q7_response" value="A less-than sign indicating the start of an HTML tag">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">A blank line
+                                <input type="radio" name="q7_response" value="A blank line">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">X-End-Header: true
+                                <input type="radio" name="q7_response" value="X-End-Header: true">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-8-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What must you do in Python before opening a socket?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">_socket = true
+                                <input type="radio" name="q8_response" value="_socket = true">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">import socket
+                                <input type="radio" name="q8_response" value="import socket">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">import tcp
+                                <input type="radio" name="q8_response" value="import tcp">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">import tcp-socket
+                                <input type="radio" name="q8_response" value="import tcp-socket">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-9-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which organization publishes Internet Protocol Standards?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">IMS
+                                <input type="radio" name="q9_response" value="IMS">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">LDAP
+                                <input type="radio" name="q9_response" value="LDAP">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">SIFA
+                                <input type="radio" name="q9_response" value="SIFA">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">IETF
+                                <input type="radio" name="q9_response" value="IETF">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-10-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What should you check before scraping a web site?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">That the web site supports the HTTP GET command
+                                <input type="radio" name="q10_response" value="That the web site supports the HTTP GET command">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">That the web site returns HTML for all pages
+                                <input type="radio" name="q10_response" value="That the web site returns HTML for all pages">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">That the web site allows scraping
+                                <input type="radio" name="q10_response" value="That the web site allows scraping">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">That the web site only has links within the same site
+                                <input type="radio" name="q10_response" value="That the web site only has links within the same site">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+                <!--Question-11-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is the purpose of the BeautifulSoup Python library?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">It allows a web site to choose an attractive skin
+                                <input type="radio" name="q11_response" value="It allows a web site to choose an attractive skin">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It builds word clouds from web pages
+                                <input type="radio" name="q11_response" value="It builds word clouds from web pages">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It animates web operations to make them more attractive
+                                <input type="radio" name="q11_response" value="It animates web operations to make them more attractive">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">It repairs and parses HTML to make it easier for a program to understand
+                                <input type="radio" name="q11_response" value="It repairs and parses HTML to make it easier for a program to understand">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-12-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. How are strings stored internally in Python 3?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">UTF-8
+                                <input type="radio" name="q12_response" value="UTF-8">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">EBCDIC
+                                <input type="radio" name="q12_response" value="EBCDIC">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Byte Code
+                                <input type="radio" name="q12_response" value="Byte Code">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Unicode
+                                <input type="radio" name="q12_response" value="Unicode">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-13-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. When reading data across the network (i.e. from a URL) in Python 3, what method must be used to convert it to the internal format used by strings?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">decode()
+                                <input type="radio" name="q13_response" value="decode()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">trim()
+                                <input type="radio" name="q13_response" value="trim()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">upper()
+                                <input type="radio" name="q13_response" value="upper()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">encode()
+                                <input type="radio" name="q13_response" value="encode()">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-14-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What is the method used to parse a string containing JSON data so that you can work with the data in Python?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">json.read()
+                                <input type="radio" name="q14_response" value="json.read()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">json.loads()
+                                <input type="radio" name="q14_response" value="json.loads()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">json.connect()
+                                <input type="radio" name="q14_response" value="json.connect()">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">json.parse()
+                                <input type="radio" name="q14_response" value="json.parse()">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-15-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. What protocol does Twitter use to protect its API?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">PKI-HMAC
+                                <input type="radio" name="q15_response" value="PKI-HMAC">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">WS*Security
+                                <input type="radio" name="q15_response" value="WS*Security">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">OAuth
+                                <input type="radio" name="q15_response" value="OAuth">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Java Web Tokens
+                                <input type="radio" name="q15_response" value="Java Web Tokens">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div style="text-align: center; margin: 40px 0px;">
+                    <button class="btn btn-primary" type="submit" form="form1" value="Submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+        <script>
+            function submitform() {
+            alert('<<<SUBMITTED>>>');
+            document.getElementById("form1").submit();
+        }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html></body></html>

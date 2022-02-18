@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form</title>
+
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    </head>
+    <body onload="setTimeout(function () { submitform(); }, 900000);">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat &display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box
+            }
+
+            body {
+                background-color: #333
+            }
+
+            .container {
+                background-color: #555;
+                color: #ddd;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: 'Montserrat', sans-serif;
+                max-width: 700px
+            }
+
+            .container > p {
+                font-size: 32px
+            }
+
+            .question {
+                width: 75%
+            }
+
+            .options {
+                position: relative;
+                padding-left: 40px
+            }
+
+            #options label {
+                display: block;
+                margin-bottom: 15px;
+                font-size: 14px;
+                cursor: pointer
+            }
+
+            .options input {
+                opacity: 0
+            }
+
+            .checkmark {
+                position: absolute;
+                top: -1px;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #555;
+                border: 1px solid #ddd;
+                border-radius: 50%
+            }
+
+            .options input:checked~.checkmark:after {
+                display: block
+            }
+
+            .options .checkmark:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                border-radius: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark {
+                background: #21bf73;
+                transition: 300ms ease-in-out 0s
+            }
+
+            .options input[type="radio"]:checked~.checkmark:after {
+                transform: translate(-50%, -50%) scale(1)
+            }
+
+            .btn-primary {
+                background-color: #555;
+                color: #ddd;
+                border: 1px solid #ddd
+            }
+
+            .btn-primary:hover {
+                background-color: #21bf73;
+                border: 1px solid #21bf73
+            }
+
+            .btn-success {
+                padding: 5px 25px;
+                background-color: #21bf73
+            }
+
+
+            @media (min-width: 577px) {
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+                .imp{
+                    margin: 0px 0px 20px 0px;
+                }
+            }
+
+            @media(min-width: 768px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+            }
+
+            @media(min-width: 840px) {
+                .pl-md-5,
+                .px-md-5 {
+                    padding-left: 0 !important;
+                }
+
+                .info {
+                    margin-top: 2%; 
+                    margin-left: 25%;
+                }
+
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 25%;
+                }
+
+
+                .imp{
+                    margin: 0px 20px 0px 0px;
+                }
+            }
+
+
+            
+
+            @media(max-width:576px) {
+                .question {
+                    width: 100%;
+                    word-spacing: 2px
+                }
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 20%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 20%;
+                }
+                .imp{
+                    margin: 0px 20px 20px 0px;
+                }
+                
+
+            }
+
+            @media(max-width:450px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 16%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 16%;
+                }
+            }
+
+            @media(max-width:414px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 14%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 14%;
+                }
+            }
+
+
+            @media(max-width:360px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 8%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 8%;
+                }
+            }
+
+            @media(max-width:320px){
+                .infoemail{
+                    margin-top: 3%; 
+                    margin-left: 3%;
+                }
+                .info{
+                    margin-top: 2%; 
+                    margin-left: 3%;
+                }
+            }
+          
+
+           
+        </style>
+
+
+        <div style="border: 2px solid red;">
+
+            <div style="text-align: center; color: white;">
+                <h1>MODULE - 1 (BEGINNER LEVEL)</h1>
+                <h2>MULTIPLE CHOICE QUESTIONS TEST</h2>
+            </div>
+
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <div style=" margin-left: 20%; margin-top: 3%; color: white;">
+
+                <h3>Rules And Regulations</h3>
+                <ul style="margin-left: 5%;">
+                    <li>Make sure that you write your name and Email ID correctly.<br>
+                        Otherwise, the system can't record your grades.</li>
+                    <li>The given time for this quiz is 30 minutes. After that, the form will be closed for you.</li>
+                    <li>Students who will not submit their answers in time will receive 0.</li>
+                    <li>You can only submit your answers once.</li>
+                    <li>Each question has its own grading points. After you submit your answers,<br>
+                         we will evaluate your answers and let you know your grades later.</li>
+                    <li>If you have any technical problem during the quiz, please take a screenshot<br>
+                        or screen recording and send us.</li>
+                </ul>
+            </div>
+
+            
+            <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+            <form
+                action="/test/beg" id="form1" method="POST">
+                <input type="hidden"  name="coursename" value="Web Development">
+                <input type="hidden"  name="coursenumber" value="200">
+                <input type="hidden"  name="level" value="beginner-1">
+
+                <div class="info" style="color: white;">
+                    <label style="margin: auto;"><h5 >Student Name </h5> </label>
+                    <div >
+                        <input class="imp"  style=" width: 300px;" type="text" name="username" placeholder="First name">
+                        <input class="inp" style=" width: 300px;" type="text" name="lastname" placeholder="Last name">
+                    </div>
+                    
+                </div>
+
+                <div class="infoemail"style="color: white;">
+                    <label style="margin: auto;"><h5>Email ID</h5></label>
+                    <div >
+                        <input style="width: 300px; margin-bottom: 3%;" type="email" name="email" placeholder="Email ID">
+                    </div>
+                </div>
+
+                <div class="hr-dashed" style="border: 1px solid white; width: 70%; margin: auto;"></div>
+
+               
+
+                <!--Question-1-->
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. CSS stands for -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Cascade style sheets
+                                <input type="radio" name="q1_response" value="Cascade style sheets">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Color and style sheets
+                                <input type="radio" name="q1_response" value="Color and style sheets">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Cascading style sheets
+                                <input type="radio" name="q1_response" value="Cascading style sheets">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q1_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Question-2-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The property in CSS used to change the background color of an element is -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">bgcolor
+                                <input type="radio" name="q2_response" value="bgcolor">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">color
+                                <input type="radio" name="q2_response" value="color">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">background-color
+                                <input type="radio" name="q2_response" value="background-color">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q2_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!---Question-3-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The property in CSS used to change the text color of an element is -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">bgcolor
+                                <input type="radio" name="q3_response" value="bgcolor">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">color
+                                <input type="radio" name="q3_response" value="color">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">background-color
+                                <input type="radio" name="q3_response" value="background-color">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q3_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-4-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q.  The CSS property used to control the element's font-size is -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">text-style
+                                <input type="radio" name="q4_response" value="text-style">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">text-size
+                                <input type="radio" name="q4_response" value="text-size">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">font-size
+                                <input type="radio" name="q4_response" value="font-size">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q4_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Question-5-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The HTML attribute used to define the inline styles is -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">style
+                                <input type="radio" name="q5_response" value="style">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">styles
+                                <input type="radio" name="q5_response" value="styles">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">class
+                                <input type="radio" name="q5_response" value="class">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q5_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-6-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following property is used as the shorthand property for the padding properties?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">padding-left
+                                <input type="radio" name="q6_response" value="padding-left">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">padding-right
+                                <input type="radio" name="q6_response" value="padding-right">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">padding
+                                <input type="radio" name="q6_response" value="padding">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">All of the above
+                                <input type="radio" name="q6_response" value="All of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-7-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The CSS property used to make the text bold is -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">font-weight : bold
+                                <input type="radio" name="q7_response" value="font-weight : bold">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">weight: bold
+                                <input type="radio" name="q7_response" value="weight: bold">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">font: bold
+                                <input type="radio" name="q7_response" value="font: bold">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">style: bold
+                                <input type="radio" name="q7_response" value="style: bold">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-8-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Are the negative values allowed in padding property?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">Yes
+                                <input type="radio" name="q8_response" value="Yes">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">No
+                                <input type="radio" name="q8_response" value="No">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Can't say
+                                <input type="radio" name="q8_response" value="Can't say">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">May be
+                                <input type="radio" name="q8_response" value="May be">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!--Question-9-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following property is used as the shorthand property of margin properties?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">margin-left
+                                <input type="radio" name="q9_response" value="margin-left">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">margin-right
+                                <input type="radio" name="q9_response" value="margin-right">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">margin
+                                <input type="radio" name="q9_response" value="margin">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q9_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-10-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The CSS property used to specify the transparency of an element is -</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">opacity
+                                <input type="radio" name="q10_response" value="opacity">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">filter
+                                <input type="radio" name="q10_response" value="filter">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">visibility
+                                <input type="radio" name="q10_response" value="visibility">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">overlay
+                                <input type="radio" name="q10_response" value="overlay">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+                <!--Question-11-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following is used to specify the subscript of text using CSS?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">vertical-align: sub
+                                <input type="radio" name="q11_response" value="vertical-align: sub">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">vertical-align: super
+                                <input type="radio" name="q11_response" value="vertical-align: super">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">vertical-align: subscript
+                                <input type="radio" name="q11_response" value="vertical-align: subscript">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q11_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+
+
+                <!--Question-12-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. Which of the following CSS property is used to specify the space between every letter inside an element?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">alpha-spacing
+                                <input type="radio" name="q12_response" value="alpha-spacing">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">character-spacing
+                                <input type="radio" name="q12_response" value="character-spacing">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">letter-spacing
+                                <input type="radio" name="q12_response" value="letter-spacing">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">alphabet-spacing
+                                <input type="radio" name="q12_response" value="alphabet-spacing">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-13-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The CSS property used to specify whether the text is written in the horizontal or vertical direction?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">writing-mode
+                                <input type="radio" name="q13_response" value="writing-mode">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">text-indent
+                                <input type="radio" name="q13_response" value="text-indent">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">word-break
+                                <input type="radio" name="q13_response" value="word-break">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">None of the above
+                                <input type="radio" name="q13_response" value="None of the above">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-14-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. How to select the elements with the class name "example"?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">example
+                                <input type="radio" name="q14_response" value="example">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">#example
+                                <input type="radio" name="q14_response" value="#example">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">.example
+                                <input type="radio" name="q14_response" value=".example">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">Class example
+                                <input type="radio" name="q14_response" value="Class example">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <!--Question-15-->
+
+                <div class="container mt-sm-5 my-1">
+                    <div class="question ml-sm-5 pl-sm-5 pt-2">
+                        <div class="py-2 h5">
+                            <b>Q. The CSS property used to draw a line around the elements outside the border?</b>
+                        </div>
+                        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                            <label class="options">border
+                                <input type="radio" name="q15_response" value="border">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">outline
+                                <input type="radio" name="q15_response" value="outline">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">padding
+                                <input type="radio" name="q15_response" value="padding">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="options">line
+                                <input type="radio" name="q15_response" value="line">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div style="text-align: center; margin: 40px 0px;">
+                    <button class="btn btn-primary" type="submit" form="form1" value="Submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+
+
+        <script>
+            function submitform() {
+            alert('<<<SUBMITTED>>>');
+            document.getElementById("form1").submit();
+        }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html></body></html>
